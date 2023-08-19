@@ -111,12 +111,13 @@ async function deleteFoo(blogId){
 
 async function addBlogData(loggedInUserId) {
     console.log(currentUser)
-    const q = query(collection(db, "blogs"), where("authorId", "==", loggedInUserId), orderBy("time", "desc"));
+    const q = query(collection(db, "blogs"), where("authorId", "==", currentUser), orderBy("time", "desc"));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
         console.log(doc.id, " => ", doc.data());
         const { authorId, blogTitle, blogContent, time } = doc.data();
 
+        console.log(authorId)
         const authorData = await getBlogAuthorData(authorId);
         const { email, firstName, surName, profileImage, userName } = authorData 
 

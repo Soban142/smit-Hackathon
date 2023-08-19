@@ -17,7 +17,7 @@ async function addBlogData() {
     querySnapshot.forEach(async (doc) => {
         console.log(doc.id, " => ", doc.data());
         const { authorId, blogTitle, blogContent, time } = doc.data();
-
+        console.log(authorId)
         const authorData = await getBlogAuthorData(authorId);
         const { email, firstName, surName, profileImage, userName } = authorData; 
 
